@@ -179,6 +179,7 @@ function renderProxies() {
     document.querySelectorAll('.generate-config-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             selectedProxy = allProxies.find(p => p.id === e.currentTarget.dataset.proxyId);
+            updateWorkerDomainOptions(); // Fix: Repopulate dropdown on modal open
             document.getElementById('generateConfigModal').classList.remove('hidden');
             generateUUID();
         });
@@ -267,7 +268,7 @@ async function checkProxies(proxiesToCheck, isManualTrigger) {
         renderProxies();
     }
 
-    const batchSize = 25;
+    const batchSize = 300; // Adjusted batch size
     for (let i = 0; i < proxiesToCheck.length; i += batchSize) {
         const batch = proxiesToCheck.slice(i, i + batchSize);
         await processHealthCheckBatch(batch);
