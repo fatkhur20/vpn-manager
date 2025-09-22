@@ -1,0 +1,13 @@
+name = "vpn-manager"
+main = "index.js"
+account_id = "bbcd656c77807de9d0ae2e953a2d441a" # User should replace this
+
+# KV Namespace binding.
+# IMPORTANT: You must create a KV Namespace in your Cloudflare dashboard
+# and name it "PROXY_STATUS". Then, come back to this file and paste its ID here.
+kv_namespaces = [
+  { binding = "PROXY_STATUS", id = "671da3554cf54b1cb1fa5d7463702e9c" }
+]
+
+[site]
+bucket = "./"

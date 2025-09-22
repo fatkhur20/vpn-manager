@@ -1,0 +1,14 @@
+{
+  "name": "vpn-manager",
+  "version": "1.0.0",
+  "description": "A simple VPN management dashboard.",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cloudflare/kv-asset-handler": "^0.3.0"
+  }
+}

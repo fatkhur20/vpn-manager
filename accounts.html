@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPN Manager - Accounts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Top Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo and Main Menu -->
+                <div class="flex items-center space-x-8">
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-900">VPN Manager</span>
+                    </div>
+
+                    <!-- Desktop Main Menu -->
+                    <div class="hidden md:flex space-x-6">
+                        <a href="index.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Dashboard</a>
+                        <a href="proxy.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Proxies</a>
+                        <a href="subscription.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Subscribe</a>
+                        <a href="accounts.html" class="text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-blue-600">Accounts</a>
+                    </div>
+                </div>
+
+                <!-- Right Side Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+
+                    <!-- User Menu -->
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="https://picsum.photos/seed/user/32/32.jpg" alt="User" class="w-8 h-8 rounded-full">
+                            <i class="fas fa-chevron-down text-xs text-gray-600"></i>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-user mr-2"></i>Profile
+                            </a>
+                            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-cog mr-2"></i>Settings
+                            </a>
+                            <hr class="my-2">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg md:hidden">
+        <div class="p-4">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-sm"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">VPN Manager</span>
+                </div>
+                <button id="closeMobileMenu" class="p-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">Dashboard</a>
+                <a href="proxy.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">Proxies</a>
+                <a href="subscription.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">Subscribe</a>
+                <a href="accounts.html" class="block px-4 py-2 text-blue-600 bg-blue-50 rounded-lg">Accounts</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">Manage Accounts</h1>
+                <p class="text-gray-600">Add, view, and manage VPN user accounts</p>
+            </div>
+            <button id="addAccountBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                <i class="fas fa-plus mr-2"></i> Add Account
+            </button>
+        </div>
+        
+        <!-- Accounts Table -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Username</th>
+                            <th scope="col" class="px-6 py-3">UUID / Password</th>
+                            <th scope="col" class="px-6 py-3">Created At</th>
+                            <th scope="col" class="px-6 py-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="accountsTableBody">
+                        <!-- Account rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <i class="fas fa-users text-5xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-500 mb-2">No accounts found</h3>
+                <p class="text-gray-500 mb-4">Add your first account to get started</p>
+                <button id="emptyStateAddBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-plus mr-2"></i> Add Account
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Account Modal -->
+    <div id="accountModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div class="p-6">
+                <h3 id="accountModalTitle" class="text-xl font-semibold mb-4">Add New Account</h3>
+
+                <form id="accountForm">
+                    <input type="hidden" id="accountId">
+
+                    <div class="mb-4">
+                        <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                        <input type="text" id="username" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="uuid" class="block text-sm font-medium text-gray-700 mb-2">UUID / Password</label>
+                        <div class="flex">
+                            <input type="text" id="uuid" class="flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <button type="button" id="generateUuidBtn" class="px-4 py-2 bg-gray-200 border-t border-b border-r border-gray-300 rounded-r-md hover:bg-gray-300 transition-colors">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end gap-2">
+                        <button type="button" id="cancelBtn" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">Cancel</button>
+                        <button type="submit" id="saveBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Save Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/accounts.js"></script>
+</body>
+</html>
